@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     //
     public function showUsers() {
-       $users = DB::connection('mysql')->table('Users')->select(['first_name', 'last_name', 'birth_year'])->get();
+       $users = DB::connection('mysql')->table('Users_laravel')->select(['first_name', 'last_name', 'birth_year'])->get();
        return view('users', ['users' => $users]);
     }
 }
