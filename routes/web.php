@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TestFormController;
+use App\Http\Controllers\EmployeeUserController;
 
 Route::get('/', function () {
 	return view('welcome');
@@ -40,3 +41,7 @@ Route::get('/employee/{id}', [EmployeeController::class, 'update'])->name('emplo
 
 Route::get('/form', [TestFormController::class, 'displayForm'])->name('show_form');
 Route::post('/form', [TestFormController::class, 'postForm'])->name('post_form');
+
+
+Route::post('/employee-user', [EmployeeUserController::class, 'store'])->name('store_employee');
+Route::get('/employee-user/{id?}', [EmployeeUserController::class, 'show'])->name('show_employee');
