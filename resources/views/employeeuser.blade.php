@@ -10,13 +10,13 @@
 <body>
 	<form name="employeeuser" method="post" action="{{ Route('store_employee') }}">
 		@csrf
-		<label for="first_name">Имя: </label><input id="first_name" type="text" name="first_name" value="@if($employee){$employee->first_name}} @endif"><br><br>
-		<label for="last_name">Фамилия: </label><input id="last_name" type="text" name="last_name" value="@if($employee){$employee->last_name}} @endif"><br><br>
+		<label for="first_name">Имя: </label><input id="first_name" type="text" name="first_name" value="@if($employee){{$employee->first_name}} @endif"><br><br>
+		<label for="last_name">Фамилия: </label><input id="last_name" type="text" name="last_name" value="@if($employee){{$employee->last_name}} @endif"><br><br>
 		<label>Выбрать департамент: </label><br>
 
-			<input type="checkbox" name="department[]" value="it" @if(in_array('it', unserialize($employee->department))) checked @endif> IT </input> <br>
-			<input type="checkbox" name="department[]" value="internal service" @if(in_array('internal service', unserialize($employee->department))) checked @endif> Interna service </input><br>
-			<input type="checkbox" name="department[]" value="finance" @if(in_array('finance', unserialize($employee->department))) checked @endif> Finance </input><br><br>
+			<input type="checkbox" name="department[]" value="it" @if($employee && in_array('it', unserialize($employee->department))) checked @endif> IT </input> <br>
+			<input type="checkbox" name="department[]" value="internal service" @if($employee && in_array('internal service', unserialize($employee->department))) checked @endif> Interna service </input><br>
+			<input type="checkbox" name="department[]" value="finance" @if($employee && in_array('finance', unserialize($employee->department))) checked @endif> Finance </input><br><br>
 
 		<input type="submit" value="Отправить">
 	</form>
