@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmployeeUser extends Model
 {
-    //
-    public $fillable = ['first_name', 'last_name', 'department'];
+	public $fillable = ['first_name', 'last_name', 'department'];
 
 }
