@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TestFormController;
 use App\Http\Controllers\EmployeeUserController;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
 	return view('welcome');
@@ -45,3 +46,6 @@ Route::post('/form', [TestFormController::class, 'postForm'])->name('post_form')
 
 Route::post('/employee-user', [EmployeeUserController::class, 'store'])->name('store_employee');
 Route::get('/employee-user/{id?}', [EmployeeUserController::class, 'show'])->name('show_employee');
+
+Route::post('/add-books', [BookController::class, 'store'])->name('store_books');
+Route::get('/add-books', [BookController::class, 'show'])->name('show_books');
