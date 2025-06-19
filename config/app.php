@@ -126,8 +126,9 @@ return [
     [
         'providers' => [
             Barryvdh\DomPDF\ServiceProvider::class,
+            App\Providers\EventServiceProvider::class,
         ],
-    
+
         'aliases' => [
             'PDF' => Barryvdh\DomPDF\Facade::class,
         ],

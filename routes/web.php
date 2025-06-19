@@ -56,3 +56,19 @@ Route::get('/users', [UserResponseController::class, 'index']);
 Route::get('/users/{id?}', [UserResponseController::class, 'show']);
 Route::post('/users', [UserResponseController::class, 'store']);
 Route::get('/resume/{id?}', [PdfGeneratorController::class, 'index']);
+
+Route::get('/news/create-test', function () {
+    $news = new \App\Models\News();
+    $news->title = 'Test News Title';
+    $news->body = 'This is a test news body.';
+    $news->save();
+    return 'Test news created!';
+});
+
+Route::get('/news/{id}/hide', function ($id) {
+    $news = \App\Models\News::findOrFail($id);
+    $news->hidden = true;
+    $news->save();
+    NewsHidden::dispatch($news);
+    return 'News hidden!';
+});
