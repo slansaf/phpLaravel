@@ -5,13 +5,15 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TestFormController;
 use App\Http\Controllers\EmployeeUserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserResponseController;
+use App\Http\Controllers\PdfGeneratorController;
 
 Route::get('/', function () {
 	return view('welcome');
 });
 
 
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'showUsers']);
+// Route::get('/users', [\App\Http\Controllers\UserController::class, 'showUsers']);
 
 Route::get('/test', [\App\Http\Controllers\SimpleController::class, 'test']);
 
@@ -49,3 +51,8 @@ Route::get('/employee-user/{id?}', [EmployeeUserController::class, 'show'])->nam
 
 Route::post('/add-books', [BookController::class, 'store'])->name('store_books');
 Route::get('/add-books', [BookController::class, 'show'])->name('show_books');
+
+Route::get('/users', [UserResponseController::class, 'index']);
+Route::get('/users/{id?}', [UserResponseController::class, 'show']);
+Route::post('/users', [UserResponseController::class, 'store']);
+Route::get('/resume/{id?}', [PdfGeneratorController::class, 'index']);
