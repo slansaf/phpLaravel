@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->text('body');
-            $table->boolean('hidden')->default(0);
+          Schema::create('news', function (Blueprint $table) {
+            $table->id(); 
+            $table->string('title'); 
+            $table->string('slug')->nullable(); 
+            $table->text('body'); 
+            $table->boolean('hidden')->default(0); 
             $table->timestamps();
         });
     }

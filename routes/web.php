@@ -7,6 +7,8 @@ use App\Http\Controllers\EmployeeUserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserResponseController;
 use App\Http\Controllers\PdfGeneratorController;
+use App\Events\NewsHidden;
+
 
 Route::get('/', function () {
 	return view('welcome');

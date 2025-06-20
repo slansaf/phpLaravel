@@ -14,6 +14,6 @@ class EventServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        //
+        \App\Models\News::observe(\App\Observers\NewsObserver::class);
     }
 }

@@ -10,6 +10,6 @@ class News extends Model
         'title',
         'slug',
         'body',
-        'hidden',
+        'hidden'
     ];
 }
