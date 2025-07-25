@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/users', [UserController::class, 'index']);
+
+
+Route::get('test-telegram', function () {
+    Telegram::sendMessage([
+        'chat_id' => env('TELEGRAM_CHANNEL_ID', ''),
+        'parse_mode' => 'html',
+        'text' => 'Произошло тестовое событие'
+    ]);
+    return response()->json(['status' => 'success']);
+});
