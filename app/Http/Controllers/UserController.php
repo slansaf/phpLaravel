@@ -21,11 +21,15 @@ class UserController extends Controller
     public function index(){
         $this->authorize('view-any', User::class);
         $users = User::all();
+       
      
     }
 
     public function show(User $user){
-          $this->authorize('view', $user);
+        $this->authorize('view', $user); 
+       
         return $user;
     }
+
+
 }

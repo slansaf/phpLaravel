@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Mail\WelcomeUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Telegram\Bot\Laravel\Facades\Telegram;
+
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -41,9 +45,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        Telegram::sendMessage([
+        'chat_id' => env('TELEGRAM_CHANNEL_ID', ''),
+        'text' => "Новый пользователь зарегистрирован: {$user->name}"
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);
+
+        Mail::to($user->email)->send(new WelcomeUser($user));
 
         return redirect(route('dashboard', absolute: false));
     }
